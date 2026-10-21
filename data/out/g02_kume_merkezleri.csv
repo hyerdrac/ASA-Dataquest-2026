@@ -1,0 +1,6 @@
+cluster,cluster_name,tfr,lex,median_age,n_obs
+1,Geçiş öncesi,6.71,42.3,17.27,2362
+2,Erken geçiş,6.01,56.55,16.72,2668
+3,Orta geçiş,3.71,65.16,19.89,2291
+4,Geç geçiş,2.31,71.62,28.29,2843
+5,Geçiş sonrası,1.54,77.1,37.48,1750
