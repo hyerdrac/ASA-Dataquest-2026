@@ -1,0 +1,162 @@
+iso3,c1990,c2023,c2050,country,pop_2023_millions
+AFG,1,3,3,Afghanistan,41.45
+AGO,1,2,3,Angola,36.75
+ALB,4,5,5,Albania,2.81
+ARE,3,5,5,United Arab Emirates,10.64
+ARG,4,5,5,Argentina,45.54
+ARM,4,5,5,Armenia,2.94
+AUS,4,5,5,Australia,26.45
+AUT,5,5,5,Austria,9.13
+AZE,3,5,5,Azerbaijan,10.32
+BDI,1,3,3,Burundi,13.69
+BEL,5,5,5,Belgium,11.71
+BEN,2,3,3,Benin,14.11
+BFA,1,3,4,Burkina Faso,23.03
+BGD,2,4,5,Bangladesh,171.47
+BGR,5,5,5,Bulgaria,6.8
+BHR,3,5,5,Bahrain,1.57
+BIH,4,5,5,Bosnia and Herzegovina,3.19
+BLR,4,5,5,Belarus,9.12
+BOL,2,4,4,Bolivia (Plurinational State of),12.24
+BRA,3,5,5,Brazil,211.14
+BWA,3,3,4,Botswana,2.48
+CAF,2,2,3,Central African Republic,5.15
+CAN,4,5,5,Canada,39.3
+CHE,5,5,5,Switzerland,8.87
+CHL,4,5,5,Chile,19.66
+CHN,4,5,5,China,1422.58
+CIV,2,3,3,Côte d'Ivoire,31.17
+CMR,2,3,3,Cameroon,28.37
+COD,1,2,3,Democratic Republic of the Congo,105.79
+COG,2,3,3,Congo,6.18
+COL,3,4,5,Colombia,52.32
+CRI,3,5,5,Costa Rica,5.11
+CUB,4,5,5,Cuba,11.02
+CYP,4,5,5,Cyprus,1.34
+CZE,5,5,5,Czechia,10.81
+DEU,5,5,5,Germany,84.55
+DJI,2,4,4,Djibouti,1.15
+DNK,5,5,5,Denmark,5.95
+DOM,3,4,5,Dominican Republic,11.33
+DZA,3,4,5,Algeria,46.16
+ECU,3,4,5,Ecuador,17.98
+EGY,3,4,4,Egypt,114.54
+ERI,2,3,4,Eritrea,3.47
+ESP,5,5,5,Spain,47.91
+EST,4,5,5,Estonia,1.37
+ETH,1,3,4,Ethiopia,128.69
+FIN,5,5,5,Finland,5.6
+FRA,5,5,5,France,66.44
+GAB,2,3,4,Gabon,2.48
+GBR,5,5,5,United Kingdom,68.68
+GEO,4,5,5,Georgia,3.81
+GHA,2,3,4,Ghana,33.79
+GIN,1,3,3,Guinea,14.41
+GMB,2,3,4,Gambia,2.7
+GNB,1,3,4,Guinea-Bissau,2.15
+GNQ,2,3,4,Equatorial Guinea,1.85
+GRC,5,5,5,Greece,10.24
+GTM,2,4,5,Guatemala,18.12
+HKG,4,5,5,"China, Hong Kong SAR",7.44
+HND,2,4,4,Honduras,10.64
+HRV,5,5,5,Croatia,3.9
+HTI,2,3,4,Haiti,11.64
+HUN,5,5,5,Hungary,9.69
+IDN,3,4,5,Indonesia,281.19
+IND,3,4,5,India,1438.07
+IRL,4,5,5,Ireland,5.2
+IRN,3,5,5,Iran (Islamic Republic of),90.61
+IRQ,2,3,4,Iraq,45.07
+ISR,4,4,5,Israel,9.26
+ITA,5,5,5,Italy,59.5
+JAM,3,4,5,Jamaica,2.84
+JOR,3,4,5,Jordan,11.44
+JPN,5,5,5,Japan,124.37
+KAZ,4,4,4,Kazakhstan,20.33
+KEN,2,3,4,Kenya,55.34
+KGZ,3,4,4,Kyrgyzstan,7.07
+KHM,2,4,4,Cambodia,17.42
+KOR,4,5,5,Republic of Korea,51.75
+KWT,3,5,5,Kuwait,4.84
+LAO,2,4,5,Lao People's Democratic Republic,7.66
+LBN,3,4,5,Lebanon,5.77
+LBR,1,3,4,Liberia,5.49
+LBY,3,4,5,Libya,7.31
+LKA,3,5,5,Sri Lanka,22.97
+LSO,2,3,4,Lesotho,2.31
+LTU,4,5,5,Lithuania,2.85
+LVA,4,5,5,Latvia,1.88
+MAR,3,4,5,Morocco,37.71
+MDA,4,5,5,Republic of Moldova,3.07
+MDG,2,3,4,Madagascar,31.2
+MEX,3,4,5,Mexico,129.74
+MKD,4,5,5,North Macedonia,1.83
+MLI,1,2,3,Mali,23.77
+MMR,3,4,5,Myanmar,54.13
+MNG,3,4,4,Mongolia,3.43
+MOZ,1,3,3,Mozambique,33.64
+MRT,2,3,3,Mauritania,5.02
+MUS,4,5,5,Mauritius,1.27
+MWI,1,3,4,Malawi,21.1
+MYS,3,4,5,Malaysia,35.13
+NAM,2,3,4,Namibia,2.96
+NER,1,2,3,Niger,26.16
+NGA,1,2,3,Nigeria,227.88
+NIC,3,4,5,Nicaragua,6.82
+NLD,5,5,5,Netherlands,18.09
+NOR,5,5,5,Norway,5.52
+NPL,2,4,5,Nepal,29.69
+NZL,4,5,5,New Zealand,5.17
+OMN,2,4,5,Oman,5.05
+PAK,2,3,4,Pakistan,247.5
+PAN,3,4,5,Panama,4.46
+PER,3,4,5,Peru,33.85
+PHL,3,4,5,Philippines,114.89
+PNG,2,3,4,Papua New Guinea,10.39
+POL,4,5,5,Poland,38.76
+PRI,4,5,5,Puerto Rico,3.24
+PRK,4,5,5,Dem. People's Republic of Korea,26.42
+PRT,5,5,5,Portugal,10.43
+PRY,3,4,5,Paraguay,6.84
+PSE,2,3,4,State of Palestine,5.41
+QAT,4,5,5,Qatar,2.98
+ROU,4,5,5,Romania,19.12
+RUS,4,5,5,Russian Federation,145.44
+RWA,1,3,4,Rwanda,13.95
+SAU,2,4,5,Saudi Arabia,33.26
+SDN,2,3,4,Sudan,50.04
+SEN,2,3,4,Senegal,18.08
+SGP,4,5,5,Singapore,5.79
+SLE,1,3,4,Sierra Leone,8.46
+SLV,3,4,5,El Salvador,6.31
+SOM,1,2,3,Somalia,18.36
+SRB,5,5,5,Serbia,6.77
+SSD,1,3,3,South Sudan,11.48
+SVK,4,5,5,Slovakia,5.52
+SVN,5,5,5,Slovenia,2.12
+SWE,5,5,5,Sweden,10.55
+SWZ,2,3,4,Eswatini,1.23
+SYR,2,3,4,Syrian Arab Republic,23.59
+TCD,1,2,3,Chad,19.32
+TGO,2,3,3,Togo,9.3
+THA,4,5,5,Thailand,71.7
+TJK,2,3,4,Tajikistan,10.39
+TKM,3,4,4,Turkmenistan,7.36
+TLS,1,3,4,Timor-Leste,1.38
+TTO,4,5,5,Trinidad and Tobago,1.5
+TUN,3,4,5,Tunisia,12.2
+TUR,3,5,5,Türkiye,87.27
+TWN,4,5,5,"China, Taiwan Province of China",23.32
+TZA,2,3,3,United Republic of Tanzania,66.62
+UGA,1,3,4,Uganda,48.66
+UKR,4,5,5,Ukraine,37.73
+URY,4,5,5,Uruguay,3.39
+USA,4,5,5,United States of America,343.48
+UZB,3,4,4,Uzbekistan,35.65
+VEN,3,4,5,Venezuela (Bolivarian Republic of),28.3
+VNM,3,4,5,Viet Nam,100.35
+XKX,3,4,5,Kosovo (under UNSC res. 1244),1.7
+YEM,2,3,4,Yemen,39.39
+ZAF,3,4,4,South Africa,63.21
+ZMB,1,3,4,Zambia,20.72
+ZWE,2,3,4,Zimbabwe,16.34
