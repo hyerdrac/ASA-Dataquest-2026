@@ -1,0 +1,2 @@
+yarışma verilerini bu klasöre koyun
+kendinizde kalsın github'a push etmeye çalışmayın

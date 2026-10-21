@@ -1,0 +1,7 @@
+tüm analizleri bu klasörde yapın
+
+çıktıları türüne göre:
+
+        veri --> data/out/
+        görsel --> charts/
+        önemli analizler --> bulgular.md
