@@ -1,0 +1,162 @@
+iso3,country,region,pop_2024_millions
+IND,India,Asia,1450.94
+CHN,China,Asia,1419.32
+USA,United States of America,Northern America,345.43
+IDN,Indonesia,Asia,283.49
+PAK,Pakistan,Asia,251.27
+NGA,Nigeria,Africa,232.68
+BRA,Brazil,Latin America and the Caribbean,212.0
+BGD,Bangladesh,Asia,173.56
+RUS,Russian Federation,Europe,144.82
+ETH,Ethiopia,Africa,132.06
+MEX,Mexico,Latin America and the Caribbean,130.86
+JPN,Japan,Asia,123.75
+EGY,Egypt,Africa,116.54
+PHL,Philippines,Asia,115.84
+COD,Democratic Republic of the Congo,Africa,109.28
+VNM,Viet Nam,Asia,100.99
+IRN,Iran (Islamic Republic of),Asia,91.57
+TUR,Türkiye,Asia,87.47
+DEU,Germany,Europe,84.55
+THA,Thailand,Asia,71.67
+GBR,United Kingdom,Europe,69.14
+TZA,United Republic of Tanzania,Africa,68.56
+FRA,France,Europe,66.55
+ZAF,South Africa,Africa,64.01
+ITA,Italy,Europe,59.34
+KEN,Kenya,Africa,56.43
+MMR,Myanmar,Asia,54.5
+COL,Colombia,Latin America and the Caribbean,52.89
+KOR,Republic of Korea,Asia,51.72
+SDN,Sudan,Africa,50.45
+UGA,Uganda,Africa,50.02
+ESP,Spain,Europe,47.91
+DZA,Algeria,Africa,46.81
+IRQ,Iraq,Asia,46.04
+ARG,Argentina,Latin America and the Caribbean,45.7
+AFG,Afghanistan,Asia,42.65
+YEM,Yemen,Asia,40.58
+CAN,Canada,Northern America,39.74
+POL,Poland,Europe,38.54
+MAR,Morocco,Africa,38.08
+AGO,Angola,Africa,37.89
+UKR,Ukraine,Europe,37.86
+UZB,Uzbekistan,Asia,36.36
+MYS,Malaysia,Asia,35.56
+MOZ,Mozambique,Africa,34.63
+GHA,Ghana,Africa,34.43
+PER,Peru,Latin America and the Caribbean,34.22
+SAU,Saudi Arabia,Asia,33.96
+MDG,Madagascar,Africa,31.96
+CIV,Côte d'Ivoire,Africa,31.93
+NPL,Nepal,Asia,29.65
+CMR,Cameroon,Africa,29.12
+VEN,Venezuela (Bolivarian Republic of),Latin America and the Caribbean,28.41
+NER,Niger,Africa,27.03
+AUS,Australia,Oceania,26.71
+PRK,Dem. People's Republic of Korea,Asia,26.5
+SYR,Syrian Arab Republic,Asia,24.67
+MLI,Mali,Africa,24.48
+BFA,Burkina Faso,Africa,23.55
+TWN,"China, Taiwan Province of China",Asia,23.21
+LKA,Sri Lanka,Asia,23.1
+MWI,Malawi,Africa,21.66
+ZMB,Zambia,Africa,21.31
+KAZ,Kazakhstan,Asia,20.59
+TCD,Chad,Africa,20.3
+CHL,Chile,Latin America and the Caribbean,19.76
+ROU,Romania,Europe,19.02
+SOM,Somalia,Africa,19.01
+SEN,Senegal,Africa,18.5
+GTM,Guatemala,Latin America and the Caribbean,18.41
+NLD,Netherlands,Europe,18.23
+ECU,Ecuador,Latin America and the Caribbean,18.14
+KHM,Cambodia,Asia,17.64
+ZWE,Zimbabwe,Africa,16.63
+GIN,Guinea,Africa,14.75
+BEN,Benin,Africa,14.46
+RWA,Rwanda,Africa,14.26
+BDI,Burundi,Africa,14.05
+BOL,Bolivia (Plurinational State of),Latin America and the Caribbean,12.41
+TUN,Tunisia,Africa,12.28
+SSD,South Sudan,Africa,11.94
+HTI,Haiti,Latin America and the Caribbean,11.77
+BEL,Belgium,Europe,11.74
+JOR,Jordan,Asia,11.55
+DOM,Dominican Republic,Latin America and the Caribbean,11.43
+ARE,United Arab Emirates,Asia,11.03
+CUB,Cuba,Latin America and the Caribbean,10.98
+HND,Honduras,Latin America and the Caribbean,10.83
+CZE,Czechia,Europe,10.74
+SWE,Sweden,Europe,10.61
+TJK,Tajikistan,Asia,10.59
+PNG,Papua New Guinea,Oceania,10.58
+PRT,Portugal,Europe,10.43
+AZE,Azerbaijan,Asia,10.34
+GRC,Greece,Europe,10.05
+HUN,Hungary,Europe,9.68
+TGO,Togo,Africa,9.52
+ISR,Israel,Asia,9.39
+AUT,Austria,Europe,9.12
+BLR,Belarus,Europe,9.06
+CHE,Switzerland,Europe,8.92
+SLE,Sierra Leone,Africa,8.64
+LAO,Lao People's Democratic Republic,Asia,7.77
+TKM,Turkmenistan,Asia,7.49
+HKG,"China, Hong Kong SAR",Asia,7.41
+LBY,Libya,Africa,7.38
+KGZ,Kyrgyzstan,Asia,7.19
+PRY,Paraguay,Latin America and the Caribbean,6.93
+NIC,Nicaragua,Latin America and the Caribbean,6.92
+BGR,Bulgaria,Europe,6.76
+SRB,Serbia,Europe,6.74
+SLV,El Salvador,Latin America and the Caribbean,6.34
+COG,Congo,Africa,6.33
+DNK,Denmark,Europe,5.98
+SGP,Singapore,Asia,5.83
+LBN,Lebanon,Asia,5.81
+FIN,Finland,Europe,5.62
+LBR,Liberia,Africa,5.61
+NOR,Norway,Europe,5.58
+SVK,Slovakia,Europe,5.51
+PSE,State of Palestine,Asia,5.5
+CAF,Central African Republic,Africa,5.33
+OMN,Oman,Asia,5.28
+IRL,Ireland,Europe,5.26
+NZL,New Zealand,Oceania,5.21
+MRT,Mauritania,Africa,5.17
+CRI,Costa Rica,Latin America and the Caribbean,5.13
+KWT,Kuwait,Asia,4.93
+PAN,Panama,Latin America and the Caribbean,4.52
+HRV,Croatia,Europe,3.88
+GEO,Georgia,Asia,3.81
+ERI,Eritrea,Africa,3.54
+MNG,Mongolia,Asia,3.48
+URY,Uruguay,Latin America and the Caribbean,3.39
+PRI,Puerto Rico,Latin America and the Caribbean,3.24
+BIH,Bosnia and Herzegovina,Europe,3.16
+QAT,Qatar,Asia,3.05
+MDA,Republic of Moldova,Europe,3.03
+NAM,Namibia,Africa,3.03
+ARM,Armenia,Asia,2.97
+LTU,Lithuania,Europe,2.86
+JAM,Jamaica,Latin America and the Caribbean,2.84
+ALB,Albania,Europe,2.79
+GMB,Gambia,Africa,2.76
+GAB,Gabon,Africa,2.54
+BWA,Botswana,Africa,2.52
+LSO,Lesotho,Africa,2.34
+GNB,Guinea-Bissau,Africa,2.2
+SVN,Slovenia,Europe,2.12
+GNQ,Equatorial Guinea,Africa,1.89
+LVA,Latvia,Europe,1.87
+MKD,North Macedonia,Europe,1.82
+XKX,Kosovo (under UNSC res. 1244),Europe,1.68
+BHR,Bahrain,Asia,1.61
+TTO,Trinidad and Tobago,Latin America and the Caribbean,1.51
+TLS,Timor-Leste,Asia,1.4
+CYP,Cyprus,Asia,1.36
+EST,Estonia,Europe,1.36
+MUS,Mauritius,Africa,1.27
+SWZ,Eswatini,Africa,1.24
+DJI,Djibouti,Africa,1.17
