@@ -19,7 +19,11 @@ The colors in the color palettes have been selected to be color-blind-friendly. 
 
 ### Population Clusters
 
-- Will be added.
+- Cluster 1: <span style="color: #2166AC;">#2166AC</span>
+- Cluster 2: <span style="color: #67A9CF;">#67A9CF</span>
+- Cluster 3: <span style="color: #F7F7F7;">#F7F7F7</span>
+- Cluster 4: <span style="color: #EF8A62;">#EF8A62</span>
+- Cluster 5: <span style="color: #B2182B;">#B2182B</span>
 
 # Tools
 
