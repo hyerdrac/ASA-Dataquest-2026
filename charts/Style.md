@@ -2,6 +2,8 @@
 
 The colors in the color palettes have been selected to be color-blind-friendly. (Note for the future: follow this rule for colors that have not yet been specified as well.)
 
+Presentation Background Color: <span style="color: #F7F7F7;">#F7F7F7</span> 
+
 ## Accent Colors
 - Türkiye: <span style="color: #7B1113;">#7B1113</span> 
 - Others: <span style="color: #C4BBAF;">#C4BBAF</span>
