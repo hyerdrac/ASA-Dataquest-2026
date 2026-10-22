@@ -1,0 +1,7 @@
+varyant,ARI_temel,1950_ilk_basamak,2023_ilk_basamak,1990_2023_geri,TUR_2023_en_ust,TUR_tum_basamaklar,TUR_geri_adim
+Temel (k=5),1.0,93,0,0,True,True,False
+k=4,0.502,101,0,0,True,True,False
+k=6,0.54,87,0,0,False,False,False
++ logIMR,0.748,98,0,0,True,True,False
++ göç,0.48,99,0,2,True,False,False
+237 ülke,0.824,99,0,0,False,False,False
