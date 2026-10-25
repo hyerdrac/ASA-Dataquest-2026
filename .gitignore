@@ -3,5 +3,6 @@ data/raw/
 
 # Python ortamı ve geçici dosyalar
 .venv/
+venv/
 __pycache__/
 .ipynb_checkpoints/

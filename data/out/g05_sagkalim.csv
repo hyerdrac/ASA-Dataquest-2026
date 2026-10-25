@@ -1,0 +1,122 @@
+country,year,sex,age,survivors_per_1000
+Germany,2023,both,0,1000.0
+Germany,2023,both,1,997.0
+Germany,2023,both,5,996.5
+Germany,2023,both,40,986.3
+Germany,2023,both,60,932.6
+Germany,2023,female,0,1000.0
+Germany,2023,female,40,989.9
+Germany,2023,female,60,952.1
+Germany,2023,male,0,1000.0
+Germany,2023,male,40,982.9
+Germany,2023,male,60,913.8
+Greece,2023,both,0,1000.0
+Greece,2023,both,1,996.7
+Greece,2023,both,5,996.2
+Greece,2023,both,40,989.0
+Greece,2023,both,60,940.4
+Greece,2023,female,0,1000.0
+Greece,2023,female,40,992.0
+Greece,2023,female,60,962.6
+Greece,2023,male,0,1000.0
+Greece,2023,male,40,986.2
+Greece,2023,male,60,917.5
+Italy,2023,both,0,1000.0
+Italy,2023,both,1,997.8
+Italy,2023,both,5,997.4
+Italy,2023,both,40,989.2
+Italy,2023,both,60,951.1
+Italy,2023,female,0,1000.0
+Italy,2023,female,40,992.4
+Italy,2023,female,60,963.7
+Italy,2023,male,0,1000.0
+Italy,2023,male,40,986.2
+Italy,2023,male,60,938.6
+Japan,2023,both,0,1000.0
+Japan,2023,both,1,998.4
+Japan,2023,both,5,997.7
+Japan,2023,both,40,987.3
+Japan,2023,both,60,948.6
+Japan,2023,female,0,1000.0
+Japan,2023,female,40,990.3
+Japan,2023,female,60,962.8
+Japan,2023,male,0,1000.0
+Japan,2023,male,40,984.5
+Japan,2023,male,60,935.0
+Nigeria,2023,both,0,1000.0
+Nigeria,2023,both,1,930.5
+Nigeria,2023,both,5,895.8
+Nigeria,2023,both,40,723.5
+Nigeria,2023,both,60,552.7
+Nigeria,2023,female,0,1000.0
+Nigeria,2023,female,40,722.6
+Nigeria,2023,female,60,558.5
+Nigeria,2023,male,0,1000.0
+Nigeria,2023,male,40,724.4
+Nigeria,2023,male,60,546.8
+Portugal,2023,both,0,1000.0
+Portugal,2023,both,1,997.4
+Portugal,2023,both,5,996.8
+Portugal,2023,both,40,986.1
+Portugal,2023,both,60,930.3
+Portugal,2023,female,0,1000.0
+Portugal,2023,female,40,989.8
+Portugal,2023,female,60,954.7
+Portugal,2023,male,0,1000.0
+Portugal,2023,male,40,982.4
+Portugal,2023,male,60,904.4
+Republic of Korea,2023,both,0,1000.0
+Republic of Korea,2023,both,1,997.9
+Republic of Korea,2023,both,5,997.2
+Republic of Korea,2023,both,40,992.5
+Republic of Korea,2023,both,60,963.7
+Republic of Korea,2023,female,0,1000.0
+Republic of Korea,2023,female,40,993.6
+Republic of Korea,2023,female,60,976.0
+Republic of Korea,2023,male,0,1000.0
+Republic of Korea,2023,male,40,991.4
+Republic of Korea,2023,male,60,951.9
+Slovenia,2023,both,0,1000.0
+Slovenia,2023,both,1,998.2
+Slovenia,2023,both,5,997.8
+Slovenia,2023,both,40,986.4
+Slovenia,2023,both,60,938.0
+Slovenia,2023,female,0,1000.0
+Slovenia,2023,female,40,992.2
+Slovenia,2023,female,60,962.0
+Slovenia,2023,male,0,1000.0
+Slovenia,2023,male,40,981.3
+Slovenia,2023,male,60,916.1
+Türkiye,1950,both,0,1000.0
+Türkiye,1950,both,1,806.6
+Türkiye,1950,both,5,689.8
+Türkiye,1950,both,40,623.4
+Türkiye,1950,both,60,513.9
+Türkiye,1950,female,0,1000.0
+Türkiye,1950,female,40,646.3
+Türkiye,1950,female,60,567.3
+Türkiye,1950,male,0,1000.0
+Türkiye,1950,male,40,601.8
+Türkiye,1950,male,60,461.8
+Türkiye,1990,both,0,1000.0
+Türkiye,1990,both,1,941.3
+Türkiye,1990,both,5,926.2
+Türkiye,1990,both,40,890.9
+Türkiye,1990,both,60,778.7
+Türkiye,1990,female,0,1000.0
+Türkiye,1990,female,40,904.6
+Türkiye,1990,female,60,831.4
+Türkiye,1990,male,0,1000.0
+Türkiye,1990,male,40,877.9
+Türkiye,1990,male,60,728.1
+Türkiye,2023,both,0,1000.0
+Türkiye,2023,both,1,990.8
+Türkiye,2023,both,5,986.9
+Türkiye,2023,both,40,963.5
+Türkiye,2023,both,60,895.0
+Türkiye,2023,female,0,1000.0
+Türkiye,2023,female,40,964.7
+Türkiye,2023,female,60,918.1
+Türkiye,2023,male,0,1000.0
+Türkiye,2023,male,40,962.4
+Türkiye,2023,male,60,872.4
