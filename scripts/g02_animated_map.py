@@ -15,6 +15,7 @@ cluster_names = {
     5: "Post-transition"
 }
 
+# Paletinizdeki küme renkleri (Mevcut haliyle doğru)
 cluster_colors = {
     1: "#2166AC",
     2: "#67A9CF",
@@ -23,8 +24,9 @@ cluster_colors = {
     5: "#B2182B",
 }
 
-background_color = "#F2E8D5"
-boundary_color = "#777777"
+# Yeni arka plan ve sınır renkleri
+background_color = "#F3F4F6"
+boundary_color = "#D1D5DB"
 
 # --------------------------------------------------
 # 2. Load data
@@ -201,102 +203,3 @@ fig.write_html(
 )
 
 fig.show()
-
-
-'''
-
-g02_cluster_map.html KODU
-
-import pandas as pd
-import plotly.express as px
-
-# Common settings
-cluster_order = [1, 2, 3, 4, 5]
-
-cluster_names = {
-    1: "Pre-transition",
-    2: "Early transition",
-    3: "Mid-transition",
-    4: "Late transition",
-    5: "Post-transition"
-}
-
-cluster_colors = {
-    1: "#1B9E77",
-    2: "#66A61E",
-    3: "#E6AB02",
-    4: "#D95F02",
-    5: "#7570B3"
-}
-
-# Load data
-df = pd.read_csv("g02_kume_harita.csv")
-
-# Reshape data into long format
-df_long = df.melt(
-    id_vars=["iso3", "country"],
-    value_vars=["cluster_1990", "cluster_2023"],
-    var_name="period",
-    value_name="cluster"
-)
-
-# Map period to year
-df_long["year"] = df_long["period"].map({
-    "cluster_1990": 1990,
-    "cluster_2023": 2023
-})
-
-# Remove missing assignments before integer conversion
-df_long = df_long.dropna(subset=["cluster"]).copy()
-df_long["cluster"] = pd.to_numeric(
-    df_long["cluster"], errors="raise"
-).astype(int)
-
-df_long["cluster_label"] = df_long["cluster"].map(cluster_names)
-
-# Keep only known clusters
-df_long = df_long.dropna(subset=["cluster_label"])
-
-# Fixed colors keyed by English names
-color_map = {
-    cluster_names[c]: cluster_colors[c]
-    for c in cluster_order
-}
-
-category_order = [
-    cluster_names[c]
-    for c in cluster_order
-]
-
-# Create animated map
-fig = px.choropleth(
-    df_long,
-    locations="iso3",
-    locationmode="ISO-3",
-    color="cluster_label",
-    hover_name="country",
-    animation_frame="year",
-    category_orders={
-        "cluster_label": category_order,
-        "year": [1990, 2023]
-    },
-    color_discrete_map=color_map,
-    labels={"cluster_label": "Demographic Transition Stage"},
-    title="Changes in Demographic Transition Stages"
-)
-
-fig.update_geos(
-    showframe=False,
-    showcoastlines=True,
-    projection_type="natural earth"
-)
-
-fig.update_layout(
-    title_x=0.5,
-    margin=dict(l=0, r=0, t=60, b=0),
-    legend_title_text="Demographic Transition Stage"
-)
-
-fig.write_html("g02_animated_cluster_map.html")
-fig.show()
-'''

@@ -25,22 +25,25 @@ TRANSITIONS_FILE = DATA_DIR / "g03_kume_gecisi.csv"
 COUNTRIES_FILE = DATA_DIR / "g03_ulke_yolculuklari.csv"
 BACKWARD_FILE = DATA_DIR / "g03_geri_adimlar.csv"
 
-# --- TEMA: KLASİK POWERPOINT & MOR GRADYAN ---
-BACKGROUND = "#F3F4F6"    # Standart slayt arkaplanı (Açık Gri)
-PANEL = "#FFFFFF"         # Temiz beyaz grafik kartları
-TEXT_COLOR = "#1F2937"    # Koyu antrasit (Tam siyah yerine yüksek okunabilirlik)
-MUTED_COLOR = "#6B7280"   # İkincil metinler ve alt başlıklar için orta gri
-GRID_COLOR = "#E5E7EB"    # Silik ızgara çizgileri
-NEUTRAL_COLOR = "#D1D5DB" # Vurgusuz ülkeler için açık gri
+# --- ARAYÜZ RENKLERİ ---
+BACKGROUND = "#F3F4F6"
+PANEL = "#FFFFFF"
+TEXT_COLOR = "#1F2937"
+MUTED_COLOR = "#6B7280"
+GRID_COLOR = "#E5E7EB"
 PROJECTION_COLOR = "#9CA3AF"
 
-# Konuşan Veri: Mor Gradyan Paleti (Açıktan Koyuya Sıralı)
+# Vurgu Renkleri
+ACCENT_TURKEY = "#7B1113"
+ACCENT_OTHER = "#C4BBAF"
+
+# Küme Renkleri (Mavi-Kırmızı Palet, 3. Küme Gri)
 CLUSTER_COLORS = {
-    1: "#D1C4E9", # Çok Açık Mor / Leylak
-    2: "#B39DDB", # Açık Mor
-    3: "#7E57C2", # Orta Mor
-    4: "#512DA8", # Koyu Mor
-    5: "#311B92", # Çok Koyu Mor / Laciverte çalan derin mor
+    1: "#2166AC",
+    2: "#67A9CF",
+    3: "#D9D9D9",
+    4: "#EF8A62",
+    5: "#B2182B",
 }
 
 CLUSTER_NAMES = {
@@ -435,13 +438,13 @@ def build_transition_matrices(flows: pd.DataFrame) -> go.Figure:
         fig.add_trace(
             go.Heatmap(
                 z=matrix, x=labels, y=labels, zmin=0, zmax=shared_max,
-                # Beyazdan Mor'a geçiş yapan ısı haritası
+                # YENİ: Küme renklerinden ayrışan Turuncu Isı Haritası Gradyanı
                 colorscale=[
                     [0.0, "#FFFFFF"], 
-                    [0.25, "#D1C4E9"], 
-                    [0.5, "#9575CD"], 
-                    [0.75, "#512DA8"], 
-                    [1.0, "#311B92"]
+                    [0.25, "#FDD0A2"], 
+                    [0.5, "#FDAE6B"], 
+                    [0.75, "#F16913"], 
+                    [1.0, "#8C2D04"]
                 ],
                 showscale=(col == 2),
                 colorbar=dict(title="Countries", thickness=13, len=0.78) if col == 2 else None,
@@ -496,8 +499,8 @@ def build_country_summary(countries: pd.DataFrame) -> go.Figure:
     labels = [SUMMARY_LABELS[key] for key in SUMMARY_ORDER]
     values = [int(counts[key]) for key in SUMMARY_ORDER]
 
-    # Bar renkleri: PPT Nötr Griler
-    colors = ["#E5E7EB", "#D1D5DB", "#9CA3AF", "#4B5563"]
+    # YENİ: Çubuk grafiği renkleri de ısı haritasındaki turuncu palete uyarlandı
+    colors = ["#FDD0A2", "#FDAE6B", "#F16913", "#8C2D04"]
 
     fig = go.Figure(
         go.Bar(
@@ -549,8 +552,8 @@ def build_country_trajectories(countries: pd.DataFrame, selected_keys: list[str]
         iso3 = str(source["iso3"]) if pd.notna(source["iso3"]) else "Not available"
         is_turkey = source["is_turkey"]
 
-        # Vurgu Rengi: Türkiye için klasik PowerPoint Kırmızı (#D32F2F), diğerleri silik Gri (#D1D5DB)
-        line_color = "#D32F2F" if is_turkey else NEUTRAL_COLOR
+        # Vurgu Rengi: Türkiye (Bordo), Diğerleri (Silik Mat Bej)
+        line_color = ACCENT_TURKEY if is_turkey else ACCENT_OTHER
         line_width = 4.0 if is_turkey else 2.5
         line_opacity = 1.0 if is_turkey else 0.6
 
@@ -718,7 +721,7 @@ def create_app(countries: pd.DataFrame, flows: pd.DataFrame, backward_info=None)
             background: var(--panel);
             border: 1px solid var(--border);
             border-radius: 10px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Klasik temiz gölge */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
           }
           .metric-card { padding: 17px 19px; }
           .metric-label { font-size: 14px; color: var(--muted); margin-bottom: 8px; }

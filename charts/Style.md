@@ -19,11 +19,11 @@ Presentation Background Color: <span style="color: #F3F4F6;">#F3F4F6</span>
 
 ### Population Clusters
 
-- Cluster 1: <span style="color: #D1C4E9;">#D1C4E9</span>
-- Cluster 2: <span style="color: #B39DDB;">#B39DDB</span>
-- Cluster 3: <span style="color: #7E57C2;">#7E57C2</span>
-- Cluster 4: <span style="color: #512DA8;">#512DA8</span>
-- Cluster 5: <span style="color: #311B92;">#311B92</span>
+- Cluster 1: <span style="color: #2166AC;">#2166AC</span>
+- Cluster 2: <span style="color: #67A9CF;">#67A9CF</span>
+- Cluster 3: <span style="color: #D9D9D9;">#F7F7F7</span>
+- Cluster 4: <span style="color: #EF8A62;">#EF8A62</span>
+- Cluster 5: <span style="color: #B2182B;">#B2182B</span>
 
 # Tools
 
