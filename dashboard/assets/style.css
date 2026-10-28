@@ -375,3 +375,73 @@ body {
 .g02-method-note strong { color: var(--text); }
 .g02-dashboard .js-plotly-plot { width: 100%; }
 @media (max-width: 900px) { .g02-dashboard { padding: 14px; } }
+
+
+/* =========================================================
+   G01 The Great Population Shift — scoped styles
+   ========================================================= */
+.g01-dashboard { width: 100%; max-width: 1600px; margin: 0 auto; padding: 24px; }
+.g01-page-header { padding: 12px 4px 20px; }
+.g01-eyebrow { text-transform: uppercase; letter-spacing: .12em; color: var(--muted); font-size: 14px; font-weight: 700; }
+.g01-dashboard h1 { font-size: clamp(25px, 3vw, 36px); line-height: 1.15; margin: 9px 0 12px; font-weight: 700; }
+.g01-intro { max-width: 960px; color: var(--muted); line-height: 1.6; margin: 0; font-size: 16px; }
+.g01-panel, .g01-method-note { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -1px rgba(0,0,0,.06); }
+.g01-panel { padding: 16px; min-width: 0; margin-bottom: 18px; overflow: hidden; }
+.g01-section-heading { font-size: 20px; margin: 0 0 12px; font-weight: 600; }
+.g01-caption { color: var(--muted); font-size: 13px; line-height: 1.55; margin: 8px 4px 2px; }
+.g01-method-note { padding: 18px 20px; margin-top: 8px; line-height: 1.65; font-size: 14px; color: var(--muted); }
+.g01-method-note strong { color: var(--text); }
+.g01-dashboard .js-plotly-plot { width: 100%; }
+@media (max-width: 900px) { .g01-dashboard { padding: 14px; } }
+
+
+/* ================= G05 · Survival revolution ================= */
+.g05-dashboard { width: 100%; max-width: 1600px; margin: 0 auto; padding: 24px; }
+.g05-header { padding: 12px 4px 20px; }
+.g05-eyebrow { text-transform: uppercase; letter-spacing: .12em; color: var(--muted); font-size: 14px; font-weight: 700; }
+.g05-dashboard h1 { font-size: clamp(25px, 3vw, 36px); line-height: 1.15; margin: 9px 0 12px; font-weight: 700; }
+.g05-intro { max-width: 960px; color: var(--muted); line-height: 1.6; margin: 0; font-size: 16px; }
+.g05-panel, .g05-method-note { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -1px rgba(0,0,0,.06); }
+.g05-panel { padding: 16px; min-width: 0; margin-bottom: 18px; overflow: hidden; }
+.g05-section-heading { font-size: 20px; margin: 0 0 12px; font-weight: 600; }
+.g05-controls { display: flex; flex-wrap: wrap; align-items: end; gap: 18px; }
+.g05-control { width: min(100%, 260px); }
+.g05-label { display: block; font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.g05-note { flex: 1; min-width: 240px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+.g05-method-note { padding: 18px 20px; margin-top: 8px; line-height: 1.65; font-size: 14px; color: var(--muted); }
+.g05-method-note strong { color: var(--text); }
+.g05-dashboard .js-plotly-plot { width: 100%; }
+@media (max-width: 900px) { .g05-dashboard { padding: 14px; } }
+
+
+/* G05: reserve a stable plotting area so responsive Plotly redraws do not get clipped. */
+.g05-dashboard .g05-panel { min-width: 0; overflow: visible; }
+.g05-dashboard .g05-panel .dash-graph { width: 100%; min-width: 0; height: 540px; min-height: 540px; }
+.g05-dashboard .g05-panel .js-plotly-plot,
+.g05-dashboard .g05-panel .plot-container,
+.g05-dashboard .g05-panel .svg-container { width: 100% !important; }
+.g05-dashboard .g05-panel .js-plotly-plot { min-height: 500px; }
+@media (max-width: 700px) {
+  .g05-dashboard .g05-panel .dash-graph { height: 480px; min-height: 480px; }
+}
+
+/* ================= G06 · Migration shield ================= */
+.g06-dashboard { width: 100%; max-width: 1600px; margin: 0 auto; padding: 24px; }
+.g06-header { padding: 12px 4px 20px; }
+.g06-eyebrow { text-transform: uppercase; letter-spacing: .12em; color: var(--muted); font-size: 14px; font-weight: 700; }
+.g06-dashboard h1 { font-size: clamp(25px, 3vw, 36px); line-height: 1.15; margin: 9px 0 12px; font-weight: 700; }
+.g06-intro { max-width: 960px; color: var(--muted); line-height: 1.6; margin: 0; font-size: 16px; }
+.g06-panel, .g06-method-note { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -1px rgba(0,0,0,.06); }
+.g06-panel { padding: 16px; min-width: 0; margin-bottom: 18px; overflow: visible; }
+.g06-section-heading { font-size: 20px; margin: 0 0 12px; font-weight: 600; }
+.g06-controls { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.g06-slider-wrap { width: min(100%, 1050px); flex: 1; min-width: 260px; padding: 0 8px; }
+.g06-label { display: block; font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 14px; }
+.g06-year-status { padding: 8px 12px; border-radius: 7px; font-weight: 800; white-space: nowrap; }
+.g06-year-status.observed { color: var(--text); background: #E5E7EB; }
+.g06-year-status.projection { color: #92400E; background: #FEF3C7; }
+.g06-dashboard .js-plotly-plot { width: 100%; }
+.g06-dashboard .dash-graph { width: 100%; min-width: 0; }
+.g06-method-note { padding: 18px 20px; margin-top: 8px; line-height: 1.65; font-size: 14px; color: var(--muted); }
+.g06-method-note strong { color: var(--text); }
+@media (max-width: 900px) { .g06-dashboard { padding: 14px; } .g06-panel { padding: 12px; } }

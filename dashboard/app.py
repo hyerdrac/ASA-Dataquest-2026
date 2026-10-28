@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from dash import Dash, Input, Output, dcc, html
 
-from pages import g02_map, g03_transitions, g04_twins
+from pages import g01_shift, g02_map, g03_transitions, g04_twins, g05_survival, g06_migration_shield
 from pages.g03_transitions import DataValidationError
 
 # One central Dash server; the existing G03 chart functions remain in their module.
@@ -25,12 +25,35 @@ except g02_map.DataValidationError as exc:
     G02_ERROR = str(exc)
 
 try:
+    G01_SHARE, G01_RANK = g01_shift.load_data()
+    G01_ERROR = None
+except g01_shift.DataValidationError as exc:
+    G01_SHARE, G01_RANK = None, None
+    G01_ERROR = str(exc)
+
+try:
     G04_DISTANCE, G04_TRAJECTORY, G04_TWIN = g04_twins.load_data()
     G04_ERROR = None
     g04_twins.register_callbacks(app, G04_DISTANCE, G04_TRAJECTORY, G04_TWIN)
 except g04_twins.DataValidationError as exc:
     G04_DISTANCE, G04_TRAJECTORY, G04_TWIN = None, None, None
     G04_ERROR = str(exc)
+
+try:
+    G05_DATA = g05_survival.load_data()
+    G05_ERROR = None
+    g05_survival.register_callbacks(app, G05_DATA)
+except g05_survival.DataValidationError as exc:
+    G05_DATA = None
+    G05_ERROR = str(exc)
+
+try:
+    G06_COUNTRIES, G06_COUNTS = g06_migration_shield.load_data()
+    G06_ERROR = None
+    g06_migration_shield.register_callbacks(app, G06_COUNTRIES, G06_COUNTS)
+except g06_migration_shield.DataValidationError as exc:
+    G06_COUNTRIES, G06_COUNTS = None, None
+    G06_ERROR = str(exc)
 
 
 def home_layout():
@@ -52,6 +75,19 @@ def home_layout():
             html.Section(
                 className="hub-grid",
                 children=[
+                    html.A(
+                        href="/dashboard/g01",
+                        className="hub-card",
+                        children=[
+                            html.Div("G01", className="hub-eyebrow"),
+                            html.Div("The Great Population Shift", className="hub-card-title"),
+                            html.Div(
+                                "Compare regional population shares and median-age rankings through 2100.",
+                                className="hub-card-description",
+                            ),
+                            html.Div("Open dashboard →", className="hub-card-link"),
+                        ],
+                    ),
                     html.A(
                         href="/dashboard/g02",
                         className="hub-card",
@@ -98,6 +134,32 @@ def home_layout():
                             html.Div("Open dashboard →", className="hub-card-link"),
                         ],
                     ),
+                    html.A(
+                        href="/dashboard/g05",
+                        className="hub-card",
+                        children=[
+                            html.Div("G05", className="hub-eyebrow"),
+                            html.Div("The Survival Revolution", className="hub-card-title"),
+                            html.Div(
+                                "Compare survival at selected ages across Türkiye's history and 2023 countries.",
+                                className="hub-card-description",
+                            ),
+                            html.Div("Open dashboard →", className="hub-card-link"),
+                        ],
+                    ),
+                    html.A(
+                        href="/dashboard/g06",
+                        className="hub-card",
+                        children=[
+                            html.Div("G06", className="hub-eyebrow"),
+                            html.Div("The Migration Shield", className="hub-card-title"),
+                            html.Div(
+                                "Explore natural population change and net migration across countries over time.",
+                                className="hub-card-description",
+                            ),
+                            html.Div("Open dashboard →", className="hub-card-link"),
+                        ],
+                    ),
                 ],
             ),
         ],
@@ -105,6 +167,18 @@ def home_layout():
 
 
 def route_layout(pathname):
+    if pathname == "/dashboard/g01":
+        if G01_ERROR:
+            return html.Main(
+                className="g01-dashboard",
+                children=[
+                    html.A("← Back to Dashboard Hub", href="/", className="hub-back"),
+                    html.H1("G01 dashboard could not load"),
+                    html.P("Check that data/out/g01_bolge_pay.csv and data/out/g01_medyan_yas_sira.csv exist and contain the expected columns."),
+                    html.Pre(G01_ERROR, className="error-message"),
+                ],
+            )
+        return g01_shift.build_layout(G01_SHARE, G01_RANK, show_back_link=True)
     if pathname == "/dashboard/g02":
         if G02_ERROR:
             return html.Main(
@@ -151,6 +225,30 @@ def route_layout(pathname):
                 ],
             )
         return g04_twins.build_layout(G04_DISTANCE, G04_TRAJECTORY, G04_TWIN, show_back_link=True)
+    if pathname == "/dashboard/g05":
+        if G05_ERROR:
+            return html.Main(
+                className="g05-dashboard",
+                children=[
+                    html.A("← Back to Dashboard Hub", href="/", className="hub-back"),
+                    html.H1("G05 dashboard could not load"),
+                    html.P("Check that data/out/g05_sagkalim.csv exists and contains the expected columns."),
+                    html.Pre(G05_ERROR, className="error-message"),
+                ],
+            )
+        return g05_survival.build_layout(G05_DATA, show_back_link=True)
+    if pathname == "/dashboard/g06":
+        if G06_ERROR:
+            return html.Main(
+                className="g06-dashboard",
+                children=[
+                    html.A("← Back to Dashboard Hub", href="/", className="hub-back"),
+                    html.H1("G06 dashboard could not load"),
+                    html.P("Check that data/out/g06_goc_kalkani.csv and data/out/g06_goc_kalkani_sayim.csv exist and contain the expected columns."),
+                    html.Pre(G06_ERROR, className="error-message"),
+                ],
+            )
+        return g06_migration_shield.build_layout(G06_COUNTRIES, G06_COUNTS, show_back_link=True)
     return home_layout()
 
 
