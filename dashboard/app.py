@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from dash import Dash, Input, Output, dcc, html
 
-from pages import g01_shift, g02_map, g03_transitions, g04_twins, g05_survival, g06_migration_shield
+from pages import g01_shift, g02_map, g03_transitions, g04_twins, g05_survival, g06_migration_shield, g07_fan_chart, g08_waterfall, g09_un_assumptions, g10_panorama
 from pages.g03_transitions import DataValidationError
 
 # One central Dash server; the existing G03 chart functions remain in their module.
@@ -54,6 +54,38 @@ try:
 except g06_migration_shield.DataValidationError as exc:
     G06_COUNTRIES, G06_COUNTS = None, None
     G06_ERROR = str(exc)
+
+try:
+    G07_DATA = g07_fan_chart.load_data()
+    G07_ERROR = None
+    g07_fan_chart.register_callbacks(app, G07_DATA)
+except g07_fan_chart.DataValidationError as exc:
+    G07_DATA = None
+    G07_ERROR = str(exc)
+
+try:
+    G08_DATA = g08_waterfall.load_data()
+    G08_ERROR = None
+    g08_waterfall.register_callbacks(app, G08_DATA)
+except g08_waterfall.DataValidationError as exc:
+    G08_DATA = None
+    G08_ERROR = str(exc)
+
+try:
+    G09_DATA = g09_un_assumptions.load_data()
+    G09_ERROR = None
+    g09_un_assumptions.register_callbacks(app, G09_DATA)
+except g09_un_assumptions.DataValidationError as exc:
+    G09_DATA = None
+    G09_ERROR = str(exc)
+
+try:
+    G10_DATA = g10_panorama.load_data()
+    G10_ERROR = None
+    g10_panorama.register_callbacks(app, G10_DATA)
+except g10_panorama.DataValidationError as exc:
+    G10_DATA = None
+    G10_ERROR = str(exc)
 
 
 def home_layout():
@@ -160,6 +192,52 @@ def home_layout():
                             html.Div("Open dashboard →", className="hub-card-link"),
                         ],
                     ),
+                    html.A(
+                        href="/dashboard/g07",
+                        className="hub-card",
+                        children=[
+                            html.Div("G07", className="hub-eyebrow"),
+                            html.Div("Population Projection Fan Chart", className="hub-card-title"),
+                            html.Div(
+                                "Explore median projections and 80% / 95% uncertainty intervals through time.",
+                                className="hub-card-description",
+                            ),
+                            html.Div("Open dashboard →", className="hub-card-link"),
+                        ],
+                    ),
+                    html.A(
+                        href="/dashboard/g08",
+                        className="hub-card",
+                        children=[
+                            html.Div("G08", className="hub-eyebrow"),
+                            html.Div("Population Change Waterfall", className="hub-card-title"),
+                            html.Div(
+                                "Decompose population change into migration, fertility and mortality effects; compare alternative scenarios.",
+                                className="hub-card-description",
+                            ),
+                            html.Div("Open dashboard →", className="hub-card-link"),
+                        ],
+                    ),
+                    html.A(
+                        href="/dashboard/g09",
+                        className="hub-card",
+                        children=[
+                            html.Div("G09", className="hub-eyebrow"),
+                            html.Div("What If UN Assumptions Were Different?", className="hub-card-title"),
+                            html.Div("Compare UN population projections with alternative fertility, migration, mortality and uncertainty assumptions.", className="hub-card-description"),
+                            html.Div("Open dashboard →", className="hub-card-link"),
+                        ],
+                    ),
+                    html.A(
+                        href="/dashboard/g10",
+                        className="hub-card",
+                        children=[
+                            html.Div("G10", className="hub-eyebrow"),
+                            html.Div("Demographic Twins & Long-Run Trajectories", className="hub-card-title"),
+                            html.Div("Find demographic twins and explore fertility, life expectancy, median age, population and transition-stage trends through 2050.", className="hub-card-description"),
+                            html.Div("Open dashboard →", className="hub-card-link"),
+                        ],
+                    ),
                 ],
             ),
         ],
@@ -249,6 +327,48 @@ def route_layout(pathname):
                 ],
             )
         return g06_migration_shield.build_layout(G06_COUNTRIES, G06_COUNTS, show_back_link=True)
+    if pathname == "/dashboard/g07":
+        if G07_ERROR:
+            return html.Main(
+                className="g07-dashboard",
+                children=[
+                    html.A("← Back to Dashboard Hub", href="/", className="hub-back"),
+                    html.H1("G07 dashboard could not load"),
+                    html.P("Check that data/out/g07_fan_chart.csv exists and contains the expected columns."),
+                    html.Pre(G07_ERROR, className="error-message"),
+                ],
+            )
+        return g07_fan_chart.build_layout(G07_DATA, show_back_link=True)
+    if pathname == "/dashboard/g08":
+        if G08_ERROR:
+            return html.Main(
+                className="g08-dashboard",
+                children=[
+                    html.A("← Back to Dashboard Hub", href="/", className="hub-back"),
+                    html.H1("G08 dashboard could not load"),
+                    html.P("Check that data/out/g08_selale.csv exists and contains the expected columns."),
+                    html.Pre(G08_ERROR, className="error-message"),
+                ],
+            )
+        return g08_waterfall.build_layout(G08_DATA, show_back_link=True)
+    if pathname == "/dashboard/g09":
+        if G09_ERROR:
+            return html.Main(className="g09-dashboard", children=[
+                html.A("← Back to Dashboard Hub", href="/", className="hub-back"),
+                html.H1("G09 dashboard could not load"),
+                html.P("Check that data/out/g09_bm_varsayim.csv exists and contains the expected columns."),
+                html.Pre(G09_ERROR, className="error-message"),
+            ])
+        return g09_un_assumptions.build_layout(G09_DATA, show_back_link=True)
+    if pathname == "/dashboard/g10":
+        if G10_ERROR:
+            return html.Main(className="g10-dashboard", children=[
+                html.A("← Back to Dashboard Hub", href="/", className="hub-back"),
+                html.H1("G10 dashboard could not load"),
+                html.P("Check that data/out/g10_pano_ikizler.csv and data/out/g10_pano_seriler.csv exist and contain the expected columns."),
+                html.Pre(G10_ERROR, className="error-message"),
+            ])
+        return g10_panorama.build_layout(G10_DATA, show_back_link=True)
     return home_layout()
 
 
