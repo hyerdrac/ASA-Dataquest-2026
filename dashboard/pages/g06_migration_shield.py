@@ -108,7 +108,7 @@ def load_data() -> tuple[pd.DataFrame, pd.DataFrame]:
 def _base_layout(fig: go.Figure, title: str, subtitle: str) -> go.Figure:
     fig.update_layout(
         title=dict(text=title, x=0.02, y=0.99, xanchor="left", yanchor="top", font=dict(size=20, color=TEXT)),
-        font=dict(family="Arial, sans-serif", color=TEXT, size=12),
+        font=dict(family="Inter, Arial, sans-serif", color=TEXT, size=12),
         paper_bgcolor=BG, plot_bgcolor=PANEL,
         margin=dict(l=64, r=30, t=150, b=60),
         hoverlabel=dict(bgcolor="#FFFFFF", font_size=12),
@@ -203,7 +203,7 @@ def build_count_figure(counts: pd.DataFrame, selected_year: int) -> go.Figure:
         fig.add_vline(x=selected_year, line=dict(color="#111827", width=1.5, dash="dash"))
     fig.update_layout(
         title=dict(text="Country counts by demographic–migration group", x=0.02, font=dict(size=19, color=TEXT)),
-        paper_bgcolor=BG, plot_bgcolor=PANEL, font=dict(family="Arial, sans-serif", color=TEXT, size=12),
+        paper_bgcolor=BG, plot_bgcolor=PANEL, font=dict(family="Inter, Arial, sans-serif", color=TEXT, size=12),
         margin=dict(l=58, r=25, t=70, b=50), legend=dict(orientation="h", y=1.02, x=0),
         xaxis=dict(title="Year", gridcolor=GRID, showline=True, linecolor=BORDER),
         yaxis=dict(title="Number of countries", gridcolor=GRID, rangemode="tozero", showline=True, linecolor=BORDER),

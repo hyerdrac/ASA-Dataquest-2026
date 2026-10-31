@@ -107,7 +107,7 @@ def home_layout():
                     html.Div("ANALYTICS WORKSPACE", className="hub-eyebrow"),
                     html.H1("Dashboard Hub"),
                     html.P(
-                        "Data-wan Kenobi Team Solution for ASA Dataquest 2026 - Choose a dashboard to explore.",
+                        "Data-wan Kenobi Team Solution for ASA Dataquest 2026 | Choose a dashboard to explore.",
                         className="hub-intro",
                     ),
                 ],

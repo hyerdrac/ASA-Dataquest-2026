@@ -34,7 +34,7 @@ BORDER_COLOR = "#E5E7EB"
 PROJECTION_COLOR = "#9CA3AF"
 
 # Accent Colors
-ACCENT_TURKEY = "#D32F2F"
+ACCENT_TURKEY = "#7B1113"  # Hub accent; red is reserved for negative values (#C62828)
 ACCENT_OTHER = "#D1D5DB"
 
 # Required Columns

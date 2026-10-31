@@ -508,12 +508,29 @@ body {
 @media (max-width: 900px) { .g09-dashboard { padding: 14px; } .g09-panel { padding: 12px; } }
 @media (max-width: 700px) { .g09-dashboard .dash-graph { min-height: 480px; } .g09-dashboard .js-plotly-plot { min-height: 460px; } }
 
-/* G10 Demographic Panorama */
-.g10-dashboard{max-width:1440px;margin:0 auto;padding:28px 30px 48px;color:var(--text,#172033)}
-.g10-header{margin:18px 0 24px}.g10-eyebrow{font-size:12px;letter-spacing:.15em;font-weight:700;color:#3475b9;margin-bottom:8px}.g10-header h1{font-size:clamp(28px,3vw,42px);line-height:1.12;margin:0 0 12px}.g10-header p,.g10-section-heading p{color:#64748b;max-width:900px;line-height:1.55;margin:0}
-.g10-filters{display:grid;grid-template-columns:repeat(2,minmax(220px,1fr));gap:16px;padding:18px;background:#f7f9fc;border:1px solid #e4eaf2;border-radius:14px;margin-bottom:20px}.g10-filter label{display:block;font-size:12px;font-weight:700;color:#526175;margin-bottom:7px}.g10-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:18px 0 22px}.g10-panel{background:#fff;border:1px solid #e4eaf2;border-radius:16px;padding:22px;margin:18px 0;box-shadow:0 4px 18px rgba(20,40,70,.035)}.g10-section-heading{margin-bottom:10px}.g10-section-heading h2{font-size:21px;margin:0 0 6px}.g10-section-heading p{font-size:13px}.g10-radio{display:flex;flex-wrap:wrap;gap:16px;margin:16px 0 4px}.g10-radio label{margin-right:14px;font-size:13px;color:#344256}.g10-twin-table{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:8px}.g10-twin-row{border:1px solid #e4eaf2;background:#fafcff;border-radius:10px;padding:13px}.g10-twin-name{font-weight:700;font-size:14px}.g10-twin-meta{font-size:12px;color:#64748b;margin-top:5px;line-height:1.5}.g10-note{font-size:12px;color:#718096;margin:18px 2px}
-@media(max-width:900px){.g10-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.g10-twin-table{grid-template-columns:1fr}.g10-dashboard{padding:18px 14px}}
-@media(max-width:560px){.g10-filters,.g10-kpis{grid-template-columns:1fr}.g10-panel{padding:14px}}
+/* ================= G10 · Demographic twins & long-run trajectories ================= */
+.g10-dashboard { width: 100%; max-width: 1600px; margin: 0 auto; padding: 24px; color: var(--text); }
+.g10-header { padding: 12px 4px 20px; margin: 0; }
+.g10-eyebrow { text-transform: uppercase; letter-spacing: .12em; color: var(--muted); font-size: 14px; font-weight: 700; margin: 0; }
+.g10-dashboard h1 { font-size: clamp(25px, 3vw, 36px); line-height: 1.15; margin: 9px 0 12px; font-weight: 700; }
+.g10-header p { max-width: 960px; color: var(--muted); line-height: 1.6; margin: 0; font-size: 16px; }
+.g10-filters, .g10-panel, .g10-note { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -1px rgba(0,0,0,.06); }
+.g10-filters { display: grid; grid-template-columns: repeat(2, minmax(220px, 1fr)); gap: 18px; padding: 16px; margin-bottom: 18px; overflow: visible; }
+.g10-filter label { display: block; font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.g10-kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 12px 0 20px; }
+.g10-panel { padding: 16px; min-width: 0; margin: 0 0 18px; overflow: visible; }
+.g10-section-heading { margin-bottom: 10px; }
+.g10-section-heading h2 { font-size: 21px; line-height: 1.2; margin: 0 0 6px; font-weight: 700; }
+.g10-section-heading p { max-width: 900px; color: var(--muted); font-size: 13px; line-height: 1.55; margin: 0; }
+.g10-radio { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0 4px; }
+.g10-radio label { margin-right: 14px; font-size: 13px; color: var(--text); }
+.g10-twin-table { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 8px; }
+.g10-twin-row { border: 1px solid var(--border); background: var(--panel); border-radius: 10px; padding: 13px; }
+.g10-twin-name { font-weight: 700; font-size: 14px; color: var(--text); }
+.g10-twin-meta { font-size: 13px; color: var(--muted); margin-top: 5px; line-height: 1.5; }
+.g10-note { padding: 18px 20px; margin-top: 8px; line-height: 1.65; font-size: 14px; color: var(--muted); }
+@media (max-width: 900px) { .g10-dashboard { padding: 14px; } .g10-panel { padding: 12px; } .g10-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } .g10-twin-table { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .g10-filters, .g10-kpis { grid-template-columns: 1fr; } }
 
 
 /* ================= G11 · Country comparison time series ================= */

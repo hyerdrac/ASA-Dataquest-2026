@@ -188,7 +188,7 @@ def _empty_figure(message: str) -> go.Figure:
     )
     fig.update_layout(
         paper_bgcolor=BG, plot_bgcolor=PANEL,
-        font=dict(family="Arial, sans-serif", color=TEXT, size=12),
+        font=dict(family="Inter, Arial, sans-serif", color=TEXT, size=12),
         margin=dict(l=76, r=40, t=120, b=62),
         xaxis=dict(visible=False), yaxis=dict(visible=False),
     )
@@ -268,7 +268,7 @@ def build_figure(df: pd.DataFrame, country_a: str | None, country_b: str | None,
         title=dict(text=f"{country_a} vs {country_b}", x=0.02, y=0.99, xanchor="left", yanchor="top",
                    font=dict(size=21, color=TEXT)),
         paper_bgcolor=BG, plot_bgcolor=PANEL,
-        font=dict(family="Arial, sans-serif", color=TEXT, size=12),
+        font=dict(family="Inter, Arial, sans-serif", color=TEXT, size=12),
         margin=dict(l=76, r=40, t=120, b=62),
         hovermode="x unified",
         hoverlabel=dict(bgcolor="#FFFFFF", font_size=12),

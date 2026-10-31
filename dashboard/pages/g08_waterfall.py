@@ -96,7 +96,7 @@ def load_data() -> pd.DataFrame:
 def _base_layout(fig: go.Figure, title: str) -> go.Figure:
     fig.update_layout(
         title=dict(text=title, x=0.02, xanchor="left", font=dict(size=21, color=TEXT)),
-        font=dict(family="Arial, sans-serif", color=TEXT, size=12),
+        font=dict(family="Inter, Arial, sans-serif", color=TEXT, size=12),
         paper_bgcolor=BG, plot_bgcolor=PANEL,
         margin=dict(l=65, r=145, t=105, b=125),
         hoverlabel=dict(bgcolor="#FFFFFF", font_size=12),
@@ -191,7 +191,7 @@ def _build_scenarios(data: pd.DataFrame, location: str, year: int) -> go.Figure:
     fig.update_layout(
         title=dict(text=f"Scenario differences · {location} · {year}", x=0.02, xanchor="left",
                    font=dict(size=21, color=TEXT)),
-        font=dict(family="Arial, sans-serif", color=TEXT, size=12),
+        font=dict(family="Inter, Arial, sans-serif", color=TEXT, size=12),
         paper_bgcolor=BG, plot_bgcolor=PANEL, showlegend=False,
     )
     return fig

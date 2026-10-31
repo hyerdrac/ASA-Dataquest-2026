@@ -33,8 +33,17 @@ def load_data():
     series['is_projection']=series.is_projection.astype(bool)
     return twins,series
 
+TEXT = '#1F2937'
+GRID = '#E5E7EB'
+BORDER = '#D1D5DB'
+PROJECTION = '#9CA3AF'
+LINE_COLOR = '#0072B2'
+BAND_COLOR = 'rgba(0,114,178,0.16)'
+
 def _base(fig, height=420):
-    fig.update_layout(template='plotly_white',height=height,margin=dict(l=24,r=24,t=54,b=24),font=dict(family='Arial, sans-serif',size=12),legend_title_text='')
+    fig.update_layout(template='plotly_white',height=height,margin=dict(l=24,r=24,t=54,b=24),font=dict(family='Inter, Arial, sans-serif',color=TEXT,size=12),legend_title_text='',
+                      paper_bgcolor='#FFFFFF',plot_bgcolor='#FFFFFF',
+                      xaxis=dict(gridcolor=GRID,linecolor=BORDER),yaxis=dict(gridcolor=GRID,linecolor=BORDER))
     return fig
 
 def build_layout(data, show_back_link=True):
@@ -84,10 +93,10 @@ def register_callbacks(app,data):
             linefig=go.Figure()
             if low in s and high in s and s[low].notna().any() and s[high].notna().any():
                 linefig.add_trace(go.Scatter(x=s.year,y=s[high],mode='lines',line=dict(width=0),showlegend=False,hoverinfo='skip',name='Upper 95% interval'))
-                linefig.add_trace(go.Scatter(x=s.year,y=s[low],mode='lines',line=dict(width=0),fill='tonexty',fillcolor='rgba(60,130,200,0.16)',showlegend=False,hoverinfo='skip',name='95% interval'))
-            linefig.add_trace(go.Scatter(x=s.year,y=s[metric],mode='lines',name=title,line=dict(color='#2463a6',width=2.5),customdata=s[['is_projection']].astype(str).values,hovertemplate='Year %{x}<br>'+title+': %{y:.2f}<br>Projection: %{customdata[0]}<extra></extra>'))
+                linefig.add_trace(go.Scatter(x=s.year,y=s[low],mode='lines',line=dict(width=0),fill='tonexty',fillcolor=BAND_COLOR,showlegend=False,hoverinfo='skip',name='95% interval'))
+            linefig.add_trace(go.Scatter(x=s.year,y=s[metric],mode='lines',name=title,line=dict(color=LINE_COLOR,width=2.5),customdata=s[['is_projection']].astype(str).values,hovertemplate='Year %{x}<br>'+title+': %{y:.2f}<br>Projection: %{customdata[0]}<extra></extra>'))
             proj=s[s.is_projection]
-            if not proj.empty: linefig.add_vline(x=float(proj.year.min()),line_dash='dash',line_color='#999',annotation_text='Projection begins')
+            if not proj.empty: linefig.add_vline(x=float(proj.year.min()),line_dash='dash',line_color=PROJECTION,annotation_text='Projection begins')
             linefig.update_layout(title=f'{country} · {title}',xaxis_title='Year',yaxis_title=unit)
             clusters=s.groupby(['year','cluster','cluster_name'],as_index=False).pop_millions.sum()
             clusters['cluster_name']=clusters.apply(lambda r:CLUSTER_NAMES.get(int(r.cluster),r.cluster_name),axis=1)

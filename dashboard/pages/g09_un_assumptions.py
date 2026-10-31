@@ -115,7 +115,7 @@ def load_data() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
 
 def _layout(fig: go.Figure, title: str, ytitle: str = "") -> go.Figure:
     fig.update_layout(title=dict(text=title, x=.02, xanchor="left", font=dict(size=20, color=TEXT)),
-        font=dict(family="Arial, sans-serif", color=TEXT, size=12), paper_bgcolor=BG, plot_bgcolor=PANEL,
+        font=dict(family="Inter, Arial, sans-serif", color=TEXT, size=12), paper_bgcolor=BG, plot_bgcolor=PANEL,
         margin=dict(l=70, r=35, t=82, b=115), hoverlabel=dict(bgcolor="#FFFFFF", font_size=12),
         xaxis=dict(title="", gridcolor=GRID, showline=True, linecolor=BORDER, zeroline=True, zerolinecolor=BORDER),
         yaxis=dict(title=ytitle, gridcolor=GRID, showline=True, linecolor=BORDER, automargin=True), showlegend=False)
@@ -234,7 +234,7 @@ def build_recovery_figure(recovery: pd.DataFrame, summary: pd.DataFrame) -> go.F
             x=0.02, xanchor="left", y=0.98,
             font=dict(size=19, color=TEXT),
         ),
-        font=dict(family="Arial, sans-serif", color=TEXT, size=11),
+        font=dict(family="Inter, Arial, sans-serif", color=TEXT, size=11),
         paper_bgcolor=BG, plot_bgcolor=PANEL,
         margin=dict(l=65, r=175, t=105, b=62),
         height=650,

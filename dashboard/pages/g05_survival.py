@@ -62,7 +62,7 @@ def load_data() -> pd.DataFrame:
 def _base_layout(fig: go.Figure, title: str, subtitle: str) -> go.Figure:
     fig.update_layout(
         title=dict(text=title, x=0.02, y=0.99, xanchor="left", yanchor="top", font=dict(size=20, color=TEXT)),
-        font=dict(family="Arial, sans-serif", color=TEXT, size=12),
+        font=dict(family="Inter, Arial, sans-serif", color=TEXT, size=12),
         paper_bgcolor=BACKGROUND,
         plot_bgcolor=PANEL,
         margin=dict(l=58, r=28, t=150, b=58),

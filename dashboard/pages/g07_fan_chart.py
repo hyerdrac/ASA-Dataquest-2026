@@ -138,7 +138,7 @@ def build_figure(df: pd.DataFrame, location: str) -> go.Figure:
         title=dict(text=f"Population projection fan chart · {location}", x=0.02, xanchor="left",
                    font=dict(size=21, color=TEXT)),
         paper_bgcolor=BG, plot_bgcolor=PANEL,
-        font=dict(family="Arial, sans-serif", color=TEXT, size=12),
+        font=dict(family="Inter, Arial, sans-serif", color=TEXT, size=12),
         margin=dict(l=70, r=170, t=95, b=62),
         hovermode="x unified",
         legend=dict(orientation="h", yanchor="bottom", y=1.02, x=0, title_text=""),
