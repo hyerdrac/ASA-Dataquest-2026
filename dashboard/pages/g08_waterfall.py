@@ -16,7 +16,7 @@ MUTED = "#6B7280"
 GRID = "#E5E7EB"
 BORDER = "#D1D5DB"
 POSITIVE = "#0072B2"
-NEGATIVE = "#D55E00"
+NEGATIVE = "#C62828"
 NEUTRAL = "#9CA3AF"
 
 
@@ -98,7 +98,7 @@ def _base_layout(fig: go.Figure, title: str) -> go.Figure:
         title=dict(text=title, x=0.02, xanchor="left", font=dict(size=21, color=TEXT)),
         font=dict(family="Arial, sans-serif", color=TEXT, size=12),
         paper_bgcolor=BG, plot_bgcolor=PANEL,
-        margin=dict(l=65, r=35, t=88, b=100),
+        margin=dict(l=65, r=145, t=105, b=125),
         hoverlabel=dict(bgcolor="#FFFFFF", font_size=12),
         xaxis=dict(title="", gridcolor=GRID, showline=True, linecolor=BORDER,
                    tickangle=-18, automargin=True),
@@ -216,7 +216,7 @@ def _kpis(df: pd.DataFrame, location: str, year: int, chart_type: str) -> tuple[
 
 def build_layout(df: pd.DataFrame, show_back_link: bool = True):
     locations = sorted(df["Location"].dropna().unique().tolist())
-    default_location = "Afghanistan" if "Afghanistan" in locations else locations[0]
+    default_location = "Türkiye" if "Türkiye" in locations else ("Turkey" if "Turkey" in locations else locations[0])
     location_data = df[df["Location"] == default_location]
     years = sorted(location_data["Time"].unique().tolist())
     default_year = 2050 if 2050 in years else years[-1]
@@ -232,7 +232,7 @@ def build_layout(df: pd.DataFrame, show_back_link: bool = True):
             html.H1("Population change waterfall"),
             html.P(
                 "Separate sequential demographic contributions from alternative scenario comparisons. "
-                "The starting and ending population are gray, positive effects blue, and negative effects orange.",
+                "The starting and ending population are gray, positive effects blue, and negative effects red.",
                 className="g08-intro",
             ),
         ]),
@@ -274,7 +274,7 @@ def build_layout(df: pd.DataFrame, show_back_link: bool = True):
             dcc.Graph(id="g08-waterfall-graph",
                       figure=build_figure(df, default_location, default_year, default_type),
                       config={"displayModeBar": False, "responsive": True},
-                      style={"height": "600px", "minHeight": "600px", "width": "100%"}),
+                      style={"height": "720px", "minHeight": "720px", "width": "100%"}),
         ]),
         html.P(
             "Reading note: decomposition rows are treated as sequential effects (Fark_milyon); "
@@ -298,7 +298,7 @@ def register_callbacks(app, df: pd.DataFrame) -> None:
     )
     def update_g08(location, year, chart_type):
         if location not in set(df["Location"].unique()):
-            location = "Afghanistan" if "Afghanistan" in set(df["Location"]) else sorted(df["Location"].unique())[0]
+            location = "Türkiye" if "Türkiye" in set(df["Location"]) else ("Turkey" if "Turkey" in set(df["Location"]) else sorted(df["Location"].unique())[0])
         location_years = sorted(df.loc[df["Location"] == location, "Time"].unique())
         if year not in location_years:
             year = 2050 if 2050 in location_years else location_years[-1]

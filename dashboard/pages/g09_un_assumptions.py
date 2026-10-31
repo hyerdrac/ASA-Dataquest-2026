@@ -7,8 +7,10 @@ from dash import Input, Output, dcc, html
 
 PROJECT_DIR = Path(__file__).resolve().parents[2]
 DATA_FILE = PROJECT_DIR / "data" / "out" / "g09_bm_varsayim.csv"
+RECOVERY_FILE = PROJECT_DIR / "data" / "out" / "g09b_dogurganlik_toparlanma.csv"
+RECOVERY_SUMMARY_FILE = PROJECT_DIR / "data" / "out" / "g09b_toparlanma_ozet.csv"
 BG, PANEL, TEXT, MUTED, GRID, BORDER = "#F3F4F6", "#FFFFFF", "#1F2937", "#6B7280", "#E5E7EB", "#D1D5DB"
-POSITIVE, NEGATIVE, NEUTRAL = "#0072B2", "#D55E00", "#9CA3AF"
+POSITIVE, NEGATIVE, NEUTRAL = "#0072B2", "#C62828", "#9CA3AF"
 
 # Display-only translations based on the complete unique-value lists supplied for G09.
 # Original values remain unchanged for filtering and calculations.
@@ -41,7 +43,7 @@ REQUIRED_COLUMNS = {
 class DataValidationError(ValueError):
     pass
 
-def load_data() -> pd.DataFrame:
+def _load_assumption_data() -> pd.DataFrame:
     if not DATA_FILE.is_file():
         raise DataValidationError(f"Required input file not found: {DATA_FILE}\nPlace g09_bm_varsayim.csv in the project's data/out/ folder.")
     try:
@@ -62,6 +64,54 @@ def load_data() -> pd.DataFrame:
     if df.empty:
         raise DataValidationError("G09 CSV contains no usable rows.")
     return df.sort_values(["Location", "Time", "Tip", "Alternatif_aciklama"]).reset_index(drop=True)
+
+def load_data() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """Load the original G09 assumptions plus the two required recovery datasets."""
+    assumptions = _load_assumption_data()
+    for path, label in ((RECOVERY_FILE, "G09B fertility recovery"),
+                        (RECOVERY_SUMMARY_FILE, "G09B recovery summary")):
+        if not path.is_file():
+            raise DataValidationError(
+                f"Required input file not found: {path}\\n"
+                "Place both g09b CSV files in the project's data/out/ folder."
+            )
+    try:
+        recovery = pd.read_csv(RECOVERY_FILE, low_memory=False)
+        summary = pd.read_csv(RECOVERY_SUMMARY_FILE, low_memory=False)
+    except Exception as exc:
+        raise DataValidationError(f"Could not read G09B CSV files: {exc}") from exc
+
+    recovery_required = {"iso3", "country", "year", "tfr", "is_projection",
+                         "below_1_5_in_2023", "recovered_to_1_8"}
+    summary_required = {"iso3", "country", "first_below_year", "min_tfr", "min_year",
+                        "max_after_min", "tfr_2023", "change_27y"}
+    missing_recovery = sorted(recovery_required - set(recovery.columns))
+    missing_summary = sorted(summary_required - set(summary.columns))
+    if missing_recovery or missing_summary:
+        details = []
+        if missing_recovery:
+            details.append("g09b_dogurganlik_toparlanma.csv: " + ", ".join(missing_recovery))
+        if missing_summary:
+            details.append("g09b_toparlanma_ozet.csv: " + ", ".join(missing_summary))
+        raise DataValidationError("G09B missing required columns: " + " | ".join(details))
+
+    recovery = recovery.copy()
+    for col in ("year", "tfr"):
+        recovery[col] = pd.to_numeric(recovery[col], errors="coerce")
+    for col in ("is_projection", "below_1_5_in_2023", "recovered_to_1_8"):
+        recovery[col] = recovery[col].astype(str).str.strip().str.lower().map(
+            {"true": True, "1": True, "yes": True, "false": False, "0": False, "no": False}
+        ).fillna(False)
+    recovery["country"] = recovery["country"].fillna("").astype(str)
+    recovery = recovery.dropna(subset=["iso3", "country", "year", "tfr"])
+    recovery["year"] = recovery["year"].astype(int)
+
+    summary = summary.copy()
+    summary["change_27y"] = pd.to_numeric(summary["change_27y"], errors="coerce")
+    if recovery.empty or summary.empty:
+        raise DataValidationError("G09B files contain no usable rows.")
+    return assumptions, recovery.sort_values(["iso3", "year"]).reset_index(drop=True), summary
+
 
 def _layout(fig: go.Figure, title: str, ytitle: str = "") -> go.Figure:
     fig.update_layout(title=dict(text=title, x=.02, xanchor="left", font=dict(size=20, color=TEXT)),
@@ -111,6 +161,107 @@ def build_indicator_figure(data: pd.DataFrame, location: str, year: int) -> go.F
     fig.update_xaxes(title_text="Indicator value (units vary by indicator)")
     return fig
 
+def build_recovery_figure(recovery: pd.DataFrame, summary: pd.DataFrame) -> go.Figure:
+    """Historical fertility paths and UN projections for countries below 1.5 in 2023."""
+    fig = go.Figure()
+    countries = recovery.groupby("iso3", sort=True)
+    projection_colors = [
+        "#2166AC", "#D55E00", "#009E73", "#CC79A7", "#7B1113",
+        "#56B4E9", "#E69F00", "#6A3D9A", "#008B8B", "#A6761D",
+    ]
+    color_by_iso = {}
+    eligible = recovery[recovery["below_1_5_in_2023"]]
+    eligible_codes = sorted(eligible["iso3"].unique())
+    color_by_iso = {code: projection_colors[i % len(projection_colors)]
+                    for i, code in enumerate(eligible_codes)}
+    recovered = set(recovery.loc[recovery["recovered_to_1_8"], "iso3"].unique())
+
+    # Historical observations: all 51 countries, shown as fine gray trajectories.
+    for iso3, country_df in countries:
+        hist = country_df[~country_df["is_projection"] & (country_df["year"] <= 2023)]
+        if hist.empty:
+            continue
+        country = str(hist["country"].iloc[0])
+        is_recovered = iso3 in recovered
+        fig.add_trace(go.Scatter(
+            x=hist["year"], y=hist["tfr"], mode="lines",
+            name=country if is_recovered else country,
+            line=dict(color="#59636F" if is_recovered else "#B8BEC6",
+                      width=2.0 if is_recovered else 0.8),
+            opacity=0.95 if is_recovered else 0.65,
+            showlegend=False,
+            hovertemplate=f"<b>{country}</b><br>Year: %{{x}}<br>Fertility: %{{y:.2f}}<extra></extra>",
+        ))
+
+    # UN projection: only the 41 countries below 1.5 children per woman in 2023.
+    for iso3 in eligible_codes:
+        country_df = recovery[(recovery["iso3"] == iso3) & recovery["is_projection"]]
+        if country_df.empty:
+            continue
+        country = str(country_df["country"].iloc[0])
+        is_recovered = iso3 in recovered
+        fig.add_trace(go.Scatter(
+            x=country_df["year"], y=country_df["tfr"], mode="lines",
+            name=country,
+            line=dict(color="#3F4852" if is_recovered else color_by_iso[iso3],
+                      width=3.0 if is_recovered else 1.7, dash="dash"),
+            opacity=1,
+            showlegend=is_recovered,
+            hovertemplate=f"<b>{country} · UN projection</b><br>Year: %{{x}}<br>Fertility: %{{y:.2f}}<extra></extra>",
+        ))
+        if is_recovered:
+            last = country_df.sort_values("year").iloc[-1]
+            fig.add_annotation(
+                x=int(last["year"]), y=float(last["tfr"]), xref="x", yref="y",
+                text=country, showarrow=False, xshift=8, yshift=0,
+                xanchor="left", font=dict(size=11, color="#3F4852"),
+            )
+
+    # Keep the two reference thresholds visually distinct and label replacement level.
+    fig.add_hline(y=1.5, line=dict(color="#9CA3AF", width=1, dash="dot"),
+                  annotation_text="1.5", annotation_position="top left",
+                  annotation_font=dict(size=10, color="#6B7280"))
+    fig.add_hline(y=2.1, line=dict(color="#7B1113", width=1.4, dash="dash"),
+                  annotation_text="2.1 · replacement level",
+                  annotation_position="top left",
+                  annotation_font=dict(size=11, color="#7B1113"))
+
+    valid_changes = summary["change_27y"].dropna()
+    historical_share = (valid_changes.gt(0).mean() * 100) if not valid_changes.empty else 52
+    fig.update_layout(
+        title=dict(
+            text="Historically, half of these countries recovered; the UN assumes all will recover",
+            x=0.02, xanchor="left", y=0.98,
+            font=dict(size=19, color=TEXT),
+        ),
+        font=dict(family="Arial, sans-serif", color=TEXT, size=11),
+        paper_bgcolor=BG, plot_bgcolor=PANEL,
+        margin=dict(l=65, r=175, t=105, b=62),
+        height=650,
+        hoverlabel=dict(bgcolor="#FFFFFF", font_size=12),
+        xaxis=dict(title="Year", range=[1950, 2108], dtick=10,
+                   gridcolor=GRID, showline=True, linecolor=BORDER),
+        yaxis=dict(title="Total fertility rate (children per woman)",
+                   range=[0, max(3.5, float(recovery["tfr"].max()) * 1.03)],
+                   gridcolor=GRID, showline=True, linecolor=BORDER),
+        annotations=list(fig.layout.annotations or []) + [
+            dict(
+                x=1.015, y=0.98, xref="paper", yref="paper",
+                xanchor="left", yanchor="top", showarrow=False,
+                align="left", bgcolor="#F7F9FC",
+                bordercolor="#E5E7EB", borderwidth=1, borderpad=10,
+                text=(f"<b>Share of countries with rising fertility<br>over the next 27 years</b>"
+                      f"<br><br>Historical: {historical_share:.0f}%"
+                      f"<br>UN projection: 100%"),
+                font=dict(size=11, color=TEXT),
+            )
+        ],
+        showlegend=True,
+        legend=dict(orientation="h", y=-0.18, x=0, title_text="Historically recovered countries"),
+    )
+    return fig
+
+
 def _kpis(df, location, year):
     d = _subset(df, location, year)
     if d.empty: return "—", "—", "—"
@@ -121,7 +272,7 @@ def _kpis(df, location, year):
     strongest = d.loc[max_abs]
     return f"{baseline:,.2f}M", f"{float(strongest['Nufus_etkisi_milyon']):+,.2f}M", str(len(effects))
 
-def build_layout(df: pd.DataFrame, show_back_link: bool = True):
+def build_layout(df: pd.DataFrame, recovery: pd.DataFrame, recovery_summary: pd.DataFrame, show_back_link: bool = True):
     locations = sorted(df["Location"].dropna().unique().tolist())
     default_location = "Türkiye" if "Türkiye" in locations else ("World" if "World" in locations else locations[0])
     locdf = df[df["Location"] == default_location]
@@ -140,6 +291,11 @@ def build_layout(df: pd.DataFrame, show_back_link: bool = True):
         html.Section(className="g09-panel", children=[html.Div(className="g09-controls", children=[
             html.Div([html.Label("Location", htmlFor="g09-location", className="g09-label"), dcc.Dropdown(id="g09-location", options=[{"label": x, "value": x} for x in locations], value=default_location, clearable=False, searchable=True)], className="g09-control"),
             html.Div([html.Label("Projection year", htmlFor="g09-year", className="g09-label"), dcc.Dropdown(id="g09-year", options=[{"label": str(int(y)), "value": int(y)} for y in sorted(df["Time"].unique())], value=default_year, clearable=False)], className="g09-control")])]),
+        html.Section(className="g09-panel g09-recovery-panel", children=[
+            dcc.Graph(id="g09-recovery-chart", figure=build_recovery_figure(recovery, recovery_summary),
+                      config={"displayModeBar": False, "responsive": True},
+                      style={"height": "650px", "minHeight": "650px", "width": "100%"})
+        ]),
         html.Section(className="g09-panel g09-chart-panel", children=[dcc.Graph(id="g09-impact-chart", figure=build_effect_figure(df, default_location, default_year), config={"displayModeBar": False, "responsive": True}, style={"height":"auto", "minHeight":"480px", "width":"100%"})]),
         html.Section(className="g09-panel g09-chart-panel", children=[dcc.Graph(id="g09-indicator-chart", figure=build_indicator_figure(df, default_location, default_year), config={"displayModeBar": False, "responsive": True}, style={"height":"auto", "minHeight":"400px", "width":"100%"})]),
         html.P("Reading note: population impact is the alternative population minus the UN projection, in millions. Positive values indicate a higher population than the UN projection; negative values indicate a lower population. Indicator values may use different units, so compare them within each indicator only.", className="g09-method-note")])

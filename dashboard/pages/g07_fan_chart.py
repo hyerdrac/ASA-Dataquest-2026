@@ -157,6 +157,9 @@ def build_figure(df: pd.DataFrame, location: str) -> go.Figure:
 
 def _default_location(df: pd.DataFrame) -> str:
     locations = set(df["Location"].unique())
+    for candidate in ("Türkiye", "Turkey"):
+        if candidate in locations:
+            return candidate
     for candidate in ("World", "WORLD", "世界"):
         if candidate in locations:
             return candidate

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from dash import Dash, Input, Output, dcc, html
 
-from pages import g01_shift, g02_map, g03_transitions, g04_twins, g05_survival, g06_migration_shield, g07_fan_chart, g08_waterfall, g09_un_assumptions, g10_panorama
+from pages import g01_shift, g02_map, g03_transitions, g04_twins, g05_survival, g06_migration_shield, g07_fan_chart, g08_waterfall, g09_un_assumptions, g10_panorama, g11_country_compare
 from pages.g03_transitions import DataValidationError
 
 # One central Dash server; the existing G03 chart functions remain in their module.
@@ -74,7 +74,7 @@ except g08_waterfall.DataValidationError as exc:
 try:
     G09_DATA = g09_un_assumptions.load_data()
     G09_ERROR = None
-    g09_un_assumptions.register_callbacks(app, G09_DATA)
+    g09_un_assumptions.register_callbacks(app, G09_DATA[0])
 except g09_un_assumptions.DataValidationError as exc:
     G09_DATA = None
     G09_ERROR = str(exc)
@@ -86,6 +86,14 @@ try:
 except g10_panorama.DataValidationError as exc:
     G10_DATA = None
     G10_ERROR = str(exc)
+
+try:
+    G11_DATA = g11_country_compare.load_data()
+    G11_ERROR = None
+    g11_country_compare.register_callbacks(app, G11_DATA)
+except g11_country_compare.DataValidationError as exc:
+    G11_DATA = None
+    G11_ERROR = str(exc)
 
 
 def home_layout():
@@ -99,7 +107,7 @@ def home_layout():
                     html.Div("ANALYTICS WORKSPACE", className="hub-eyebrow"),
                     html.H1("Dashboard Hub"),
                     html.P(
-                        "Choose a dashboard to explore.",
+                        "Data-wan Kenobi Team Solution for ASA Dataquest 2026 - Choose a dashboard to explore.",
                         className="hub-intro",
                     ),
                 ],
@@ -127,7 +135,7 @@ def home_layout():
                             html.Div("G02", className="hub-eyebrow"),
                             html.Div("Global Demographic Transition", className="hub-card-title"),
                             html.Div(
-                                "Explore the global distribution of demographic transition stages from 1950 to 2050.",
+                                "Explore the global distribution of demographic transition stages from 1950 to 2020.",
                                 className="hub-card-description",
                             ),
                             html.Div("Open dashboard →", className="hub-card-link"),
@@ -235,6 +243,16 @@ def home_layout():
                             html.Div("G10", className="hub-eyebrow"),
                             html.Div("Demographic Twins & Long-Run Trajectories", className="hub-card-title"),
                             html.Div("Find demographic twins and explore fertility, life expectancy, median age, population and transition-stage trends through 2050.", className="hub-card-description"),
+                            html.Div("Open dashboard →", className="hub-card-link"),
+                        ],
+                    ),
+                    html.A(
+                        href="/dashboard/g11",
+                        className="hub-card",
+                        children=[
+                            html.Div("G11", className="hub-eyebrow"),
+                            html.Div("Country Comparison Time Series", className="hub-card-title"),
+                            html.Div("Pick two countries and one indicator to compare their trajectories from 1950 to 2100.", className="hub-card-description"),
                             html.Div("Open dashboard →", className="hub-card-link"),
                         ],
                     ),
@@ -359,7 +377,7 @@ def route_layout(pathname):
                 html.P("Check that data/out/g09_bm_varsayim.csv exists and contains the expected columns."),
                 html.Pre(G09_ERROR, className="error-message"),
             ])
-        return g09_un_assumptions.build_layout(G09_DATA, show_back_link=True)
+        return g09_un_assumptions.build_layout(*G09_DATA, show_back_link=True)
     if pathname == "/dashboard/g10":
         if G10_ERROR:
             return html.Main(className="g10-dashboard", children=[
@@ -369,6 +387,15 @@ def route_layout(pathname):
                 html.Pre(G10_ERROR, className="error-message"),
             ])
         return g10_panorama.build_layout(G10_DATA, show_back_link=True)
+    if pathname == "/dashboard/g11":
+        if G11_ERROR:
+            return html.Main(className="g11-dashboard", children=[
+                html.A("← Back to Dashboard Hub", href="/", className="hub-back"),
+                html.H1("G11 dashboard could not load"),
+                html.P("Check that data/out/countries_clean.csv exists and contains the expected columns."),
+                html.Pre(G11_ERROR, className="error-message"),
+            ])
+        return g11_country_compare.build_layout(G11_DATA, show_back_link=True)
     return home_layout()
 
 

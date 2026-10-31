@@ -514,3 +514,25 @@ body {
 .g10-filters{display:grid;grid-template-columns:repeat(2,minmax(220px,1fr));gap:16px;padding:18px;background:#f7f9fc;border:1px solid #e4eaf2;border-radius:14px;margin-bottom:20px}.g10-filter label{display:block;font-size:12px;font-weight:700;color:#526175;margin-bottom:7px}.g10-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:18px 0 22px}.g10-panel{background:#fff;border:1px solid #e4eaf2;border-radius:16px;padding:22px;margin:18px 0;box-shadow:0 4px 18px rgba(20,40,70,.035)}.g10-section-heading{margin-bottom:10px}.g10-section-heading h2{font-size:21px;margin:0 0 6px}.g10-section-heading p{font-size:13px}.g10-radio{display:flex;flex-wrap:wrap;gap:16px;margin:16px 0 4px}.g10-radio label{margin-right:14px;font-size:13px;color:#344256}.g10-twin-table{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:8px}.g10-twin-row{border:1px solid #e4eaf2;background:#fafcff;border-radius:10px;padding:13px}.g10-twin-name{font-weight:700;font-size:14px}.g10-twin-meta{font-size:12px;color:#64748b;margin-top:5px;line-height:1.5}.g10-note{font-size:12px;color:#718096;margin:18px 2px}
 @media(max-width:900px){.g10-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.g10-twin-table{grid-template-columns:1fr}.g10-dashboard{padding:18px 14px}}
 @media(max-width:560px){.g10-filters,.g10-kpis{grid-template-columns:1fr}.g10-panel{padding:14px}}
+
+
+/* ================= G11 · Country comparison time series ================= */
+.g11-dashboard { width: 100%; max-width: 1600px; margin: 0 auto; padding: 24px; }
+.g11-header { padding: 12px 4px 20px; }
+.g11-eyebrow { text-transform: uppercase; letter-spacing: .12em; color: var(--muted); font-size: 14px; font-weight: 700; }
+.g11-dashboard h1 { font-size: clamp(25px, 3vw, 36px); line-height: 1.15; margin: 9px 0 12px; font-weight: 700; }
+.g11-intro { max-width: 960px; color: var(--muted); line-height: 1.6; margin: 0; font-size: 16px; }
+.g11-panel, .g11-method-note { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -1px rgba(0,0,0,.06); }
+.g11-panel { padding: 16px; min-width: 0; margin-bottom: 18px; overflow: visible; }
+.g11-controls { display: flex; flex-wrap: wrap; align-items: end; gap: 18px; }
+.g11-control { width: min(100%, 300px); min-width: 220px; }
+.g11-control-wide { width: min(100%, 520px); }
+.g11-label { display: block; font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.g11-chart-panel { overflow: visible; }
+.g11-dashboard .dash-graph { width: 100%; min-width: 0; height: 560px; min-height: 560px; }
+.g11-dashboard .js-plotly-plot, .g11-dashboard .plot-container, .g11-dashboard .svg-container { width: 100% !important; }
+.g11-dashboard .js-plotly-plot { min-height: 520px; }
+.g11-method-note { padding: 18px 20px; margin-top: 8px; line-height: 1.65; font-size: 14px; color: var(--muted); }
+.g11-method-note strong { color: var(--text); }
+@media (max-width: 900px) { .g11-dashboard { padding: 14px; } .g11-panel { padding: 12px; } }
+@media (max-width: 700px) { .g11-dashboard .dash-graph { height: 520px; min-height: 520px; } .g11-dashboard .js-plotly-plot { min-height: 480px; } }

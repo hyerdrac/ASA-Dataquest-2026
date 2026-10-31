@@ -61,14 +61,14 @@ def load_data() -> pd.DataFrame:
 
 def _base_layout(fig: go.Figure, title: str, subtitle: str) -> go.Figure:
     fig.update_layout(
-        title=dict(text=title, x=0.02, xanchor="left", font=dict(size=21, color=TEXT)),
+        title=dict(text=title, x=0.02, y=0.99, xanchor="left", yanchor="top", font=dict(size=20, color=TEXT)),
         font=dict(family="Arial, sans-serif", color=TEXT, size=12),
         paper_bgcolor=BACKGROUND,
         plot_bgcolor=PANEL,
-        margin=dict(l=58, r=28, t=88, b=58),
+        margin=dict(l=58, r=28, t=150, b=58),
         hoverlabel=dict(bgcolor="#FFFFFF", font_size=12),
         legend=dict(
-            orientation="h", yanchor="bottom", y=1.01,
+            orientation="h", yanchor="bottom", y=1.0,
             xanchor="left", x=0, title_text=""
         ),
         xaxis=dict(
@@ -81,8 +81,8 @@ def _base_layout(fig: go.Figure, title: str, subtitle: str) -> go.Figure:
         ),
         annotations=[
             dict(
-                text=subtitle, x=0, y=1.13, xref="paper", yref="paper",
-                xanchor="left", showarrow=False, font=dict(size=12, color=MUTED)
+                text=subtitle, x=0, y=1.0, xref="paper", yref="paper", yshift=60,
+                xanchor="left", yanchor="bottom", showarrow=False, font=dict(size=12, color=MUTED)
             )
         ],
     )

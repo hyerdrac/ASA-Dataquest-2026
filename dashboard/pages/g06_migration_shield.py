@@ -107,19 +107,19 @@ def load_data() -> tuple[pd.DataFrame, pd.DataFrame]:
 
 def _base_layout(fig: go.Figure, title: str, subtitle: str) -> go.Figure:
     fig.update_layout(
-        title=dict(text=title, x=0.02, xanchor="left", font=dict(size=21, color=TEXT)),
+        title=dict(text=title, x=0.02, y=0.99, xanchor="left", yanchor="top", font=dict(size=20, color=TEXT)),
         font=dict(family="Arial, sans-serif", color=TEXT, size=12),
         paper_bgcolor=BG, plot_bgcolor=PANEL,
-        margin=dict(l=64, r=30, t=94, b=60),
+        margin=dict(l=64, r=30, t=150, b=60),
         hoverlabel=dict(bgcolor="#FFFFFF", font_size=12),
-        legend=dict(orientation="h", yanchor="bottom", y=1.01, xanchor="left", x=0, title_text="Region"),
+        legend=dict(orientation="h", yanchor="bottom", y=1.0, xanchor="left", x=0, title_text="Region"),
         xaxis=dict(title="Natural population change (per 1,000 people)", gridcolor=GRID, zeroline=False,
                    showline=True, linecolor=BORDER),
         yaxis=dict(title="Net migration (per 1,000 people)", gridcolor=GRID, zeroline=False,
                    showline=True, linecolor=BORDER),
         annotations=list(fig.layout.annotations or ()) + [dict(
-            text=subtitle, x=0, y=1.13, xref="paper", yref="paper", xanchor="left",
-            showarrow=False, font=dict(size=12, color=MUTED)
+            text=subtitle, x=0, y=1.0, xref="paper", yref="paper", yshift=60,
+            xanchor="left", yanchor="bottom", showarrow=False, font=dict(size=12, color=MUTED)
         )],
     )
     return fig
@@ -178,8 +178,8 @@ def build_scatter_figure(countries: pd.DataFrame, year: int) -> go.Figure:
     projection = bool(data["is_projection"].mode().iloc[0])
     year_color = "#B45309" if projection else TEXT
     year_label = f"{year} · PROJECTION" if projection else f"{year} · OBSERVED / ESTIMATE"
-    fig.add_annotation(x=1, y=1.19, xref="paper", yref="paper", text=year_label,
-                       showarrow=False, xanchor="right", font=dict(size=13, color=year_color))
+    fig.add_annotation(x=1, y=1.0, xref="paper", yref="paper", yshift=100, text=year_label,
+                       showarrow=False, xanchor="right", yanchor="bottom", font=dict(size=13, color=year_color))
     _base_layout(fig, "Migration shield", "Each bubble is a country; bubble size represents population. Labels are limited to key extremes.")
     fig.update_xaxes(range=[min(x_min - x_pad, -2), max(x_max + x_pad, 2)])
     fig.update_yaxes(range=[min(y_min - y_pad, -2), max(y_max + y_pad, 2)])

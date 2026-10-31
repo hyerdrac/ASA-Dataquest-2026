@@ -115,7 +115,7 @@ def build_map(df: pd.DataFrame):
             "lex": "Life Expectancy",
             "median_age": "Median Age",
         },
-        title="Global Demographic Transition, 1950–2050",
+        title=f"Global Demographic Transition, {int(df['year'].min())}–{int(df['year'].max())}",
     )
     fig.update_geos(
         projection_type="natural earth",
@@ -182,7 +182,7 @@ def build_layout(df: pd.DataFrame, show_back_link: bool = True):
     children.extend([
         html.Header(className="g02-page-header", children=[
             html.Div("G02 / DEMOGRAPHIC TRANSITION", className="g02-eyebrow"),
-            html.H1("Global Demographic Transition, 1950–2050"),
+            html.H1(f"Global Demographic Transition, {years[0]}–{years[-1]}"),
             html.P(
                 "Explore how countries move through demographic transition stages over time. "
                 "Use the animation controls to move between five-year intervals.",
@@ -204,8 +204,12 @@ def build_layout(df: pd.DataFrame, show_back_link: bool = True):
         ]),
         html.Section(className="g02-method-note", children=[
             html.Strong("Data note: "),
-            "Years after 2023 are labeled as projections; years through 2023 are labeled as UN estimates. "
-            "The map uses five-year intervals between 1950 and 2050.",
+            (
+                "Years after 2023 are labeled as projections; years through 2023 are labeled as UN estimates. "
+                if years[-1] > 2023
+                else "All years shown are UN estimates. "
+            )
+            + f"The map uses five-year intervals between {years[0]} and {years[-1]}.",
         ]),
     ])
     return html.Main(className="g02-dashboard", children=children)
