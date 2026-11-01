@@ -25,8 +25,8 @@ An analysis of the UN World Population Prospects 2024 dataset: 237 countries and
 |---|---|---|
 | Yiğit Taha Ak | Analysis Lead | [ytafk](https://github.com/ytafk) |
 | Hasan Furkan Koca | Scenario Analyst | [FURKAN3312](https://github.com/FURKAN3312) |
-| Taha Mert İlhan | Analysis Support & Validation | [aem0n](https://github.com/aem0n) |
-| Hakan Yerdraç | Visualization & Presentation | [hyerdrac](https://github.com/hyerdrac) |
+| Taha Mert İlhan | Analysis & Validation Specialist | [aem0n](https://github.com/aem0n) |
+| Hakan Yerdraç | Lead Visualization & Presentation | [hyerdrac](https://github.com/hyerdrac) |
 
 ## 📂 Project Structure
 
@@ -39,6 +39,7 @@ ASA-Dataquest-2026/
 ├── documents/         # Competition documents
 ├── scripts/           # Data preparation scripts
 ├── notebooks/         # Experiments and analysis
+├── dashboard/         # Dashboard app
 ├── charts/            # Exported charts
 ├── deck/              # Presentation
 ├── requirements.txt   # Project dependencies
